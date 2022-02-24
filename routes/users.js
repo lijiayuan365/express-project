@@ -14,6 +14,16 @@ router.get('/', function(req, res, next) {
   });
   // res.send('respond with a resource');
 });
+router.get('/write', function(req, res, next) {
+  userService.writeUser().then((data)=>{
+    res.json({
+      code:0,
+      msg:'OK',
+      data:data
+    })
+  });
+  // res.send('respond with a resource');
+});
 
 router.get('/login',(req,res,next)=>{
   res.json({

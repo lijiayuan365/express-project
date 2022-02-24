@@ -44,6 +44,20 @@ class BaseDao {
       return error;
     }
   }
+  /**
+   * 批量添加
+   * @param {*} arr 
+   * @returns 
+   */
+  async saveMany(arr) {
+    try {
+      let result = await this.Model.insertMany(arr);
+      return result;
+    } catch (error) {
+      console.log('saveMany error--> ', error);
+      return error;
+    }
+  }
 
 
   /**

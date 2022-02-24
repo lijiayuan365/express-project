@@ -30,9 +30,19 @@ function getMongoUrl() {
     }
     mongoUrl = mongoUrl.slice(0, -1); // 去掉末尾逗号
   } else {
-    mongoUrl += `${mongodbConfig.host}:${mongodbConfig.port}`;
+    if(mongodbConfig.user) {
+
+      mongoUrl += `${mongodbConfig.user}:${mongodbConfig.pwd}@${mongodbConfig.host}:${mongodbConfig.port}`;
+    } else {
+
+      mongoUrl += `${mongodbConfig.host}:${mongodbConfig.port}`;
+    }
   }
   mongoUrl += `/${dbName}`;
+  if(mongodbConfig.user) {
+    mongoUrl+=`?authSource=admin`
+  }
+  console.log(mongoUrl)
 
   return mongoUrl;
 }
